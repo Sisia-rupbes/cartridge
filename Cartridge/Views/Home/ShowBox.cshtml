@@ -1,0 +1,18 @@
+﻿<b>Картриджи в коробке: </b>
+@if (ViewBag.BoxCartridges.Count > 0)
+{
+    foreach (p000052 cartridge in ViewBag.BoxCartridges)
+    {
+        <div>
+            <span>Картридж № - @cartridge.kod  @cartridge.p000049.cartridge_brand @cartridge.p000049.cartridge_model </span>
+            <span>в коробке с - @cartridge.p000053.FirstOrDefault(x => x.date == cartridge.p000053.Max(d => d.date)).date.ToShortDateString()</span>
+        </div>
+
+    }
+}
+else
+{
+    <div>
+        <span>Список пуст</span>
+    </div>
+}

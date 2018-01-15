@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Заправка";
+}
+<h2>Выберите картриджи, кторые вернулись с заправки</h2>
+@if (ViewBag.FullCartridges.Count > 0)
+{
+    using (Ajax.BeginForm("ReturnCartridge", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        foreach (p000052 item in ViewBag.FullCartridges)
+        {
+            <div>
+                <input type="checkbox" value="@item.kod" checked name="cartridgesID" /><span>@item.p000049.cartridge_brand @item.p000049.cartridge_model - @item.kod</span>
+            </div>
+        }
+        <div>
+            <input type="submit" value="Вернуть с заправки" class="btn btn-default" />
+        </div>
+        <div id="results"></div>
+    }
+}
+else
+{
+    <div>Пока нету картриджей в заправке</div>
+}
+

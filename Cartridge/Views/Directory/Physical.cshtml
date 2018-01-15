@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Справочник устройств";
+}
+<h2>Справочник физических устройств печати и картриджей</h2>
+
+@using (Ajax.BeginForm("AddDevice", new AjaxOptions { UpdateTargetId = "devicesresults" }))
+{
+    <p>Добавить устройство в отдел</p>
+    <select name="kod_p000044" class="form-control">
+        @foreach (p000044 item in ViewBag.Departments)
+        {
+            <option value="@item.kod">@item.department</option>
+        }
+    </select>
+    <select name="kod_p000045" class="form-control">
+        @foreach (p000045 item in ViewBag.Devices)
+        {
+            <option value="@item.kod">@item.device_brand @item.device_model</option>
+        }
+    </select>
+    <input type="text" placeholder="Инвентарный номер" name="number" class="form-control text-box single-line" />
+    <input type="submit" value="Добавить" class="btn btn-default" />
+}
+@Html.ActionLink("Все устройства печати", "Devices", "Directory")
+<div id="devicesresults"></div>
+<hr />
+@using (Ajax.BeginForm("AddCartridge", new AjaxOptions { UpdateTargetId = "cartridgeresults" }))
+{
+    <p>Добавить новый картридж</p>
+    <select name="modelID" class="form-control">
+        @foreach (p000049 item in ViewBag.Cartridges)
+        {
+            <option value="@item.kod">@item.cartridge_brand @item.cartridge_model</option>
+        }
+    </select>
+    <input type="submit" value="Добавить" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Все картриджи", "Cartridges", "Directory")</p>
+<div id="cartridgeresults"></div>
+<hr />
+

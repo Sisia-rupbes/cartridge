@@ -1,0 +1,7 @@
+﻿<span>Куда установлен - </span>
+<select name="deviceID" class="form-control">
+    @foreach (p000047 item in ViewBag.FitDevices)
+    {
+        <option value="@item.kod">@item.p000045.device_brand @item.p000045.device_model @item.p000044.department @item.kod</option>
+    }
+</select>

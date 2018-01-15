@@ -1,0 +1,14 @@
+﻿<p>Выберите устройство печати:</p>
+<select name="deviceID" class="form-control">
+    @foreach (p000047 device in ViewBag.Devices)
+    {
+        <option value="@device.kod" @(device.kod==ViewBag.DeviceID ? "selected" : "")>@device.p000045.device_brand @device.p000045.device_model - @device.number</option>
+    }
+</select>
+<p>Выберите картридж, который хотите установить:</p>
+<select name="cartridgeID" class="form-control">
+    @foreach (p000052 cartridge in ViewBag.Cartridges)
+    {
+        <option value="@cartridge.kod">@cartridge.p000049.cartridge_brand @cartridge.p000049.cartridge_model - @cartridge.kod</option>
+    }
+</select>

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Все отделы";
+}
+
+<h2>Все отделы:</h2>
+
+@foreach (p000044 department in ViewBag.AllDepartments)
+{
+    using (Ajax.BeginForm("EditDepartment", new AjaxOptions { UpdateTargetId = department.kod.ToString() }))
+    {
+        <input type="hidden" name="kod" value="@department.kod" />
+        <input type="text" name="department" value="@department.department" placeholder="@department.department" class="form-control text-box single-line"/>
+        <input type="submit" value="Изменить" class="btn btn-default" />
+    }
+    <div id="@department.kod"></div>
+    <hr />
+}
+

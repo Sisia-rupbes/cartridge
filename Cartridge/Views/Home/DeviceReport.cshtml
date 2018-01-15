@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Отчет по устройствам";
+}
+
+<h1>Отчет по устройствам печати</h1>
+@foreach(p000047 device in ViewBag.Devices)
+{
+    <div>
+        <p>
+            Отдел - <b>@device.p000044.department</b>
+        </p>
+        <p>
+            Устройство - <b>@device.p000045.device_brand @device.p000045.device_model</b>
+        </p>
+        <p>Инвентарный номер - <b>@device.number</b></p>
+        @if (device.p000054.ToArray().Length != 0 && @device.p000054.FirstOrDefault(x => x.date == device.p000054.Max(d => d.date)).p000052.kod_p000051==3)
+        {
+            <p>
+                Картридж - <b>@device.p000054.FirstOrDefault(x => x.date == device.p000054.Max(d => d.date)).p000052.kod @device.p000054.FirstOrDefault(x => x.date == device.p000054.Max(d => d.date)).p000052.p000049.cartridge_brand @device.p000054.FirstOrDefault(x => x.date == device.p000054.Max(d => d.date)).p000052.p000049.cartridge_model</b>
+            </p>
+        }
+        else
+        {
+            <p><b>Картридж не установлен</b></p>
+        }
+    </div>
+    <hr />
+}
+

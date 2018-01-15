@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Модели картриджей";
+}
+
+<h2>Все модели картриджей</h2><br />
+@foreach (p000049 cat_model in ViewBag.AllCatModels)
+{
+    using (Ajax.BeginForm("EditCatModel", new AjaxOptions { UpdateTargetId = cat_model.kod.ToString() }))
+    {
+        <input type="hidden" name="kod" value="@cat_model.kod"/>
+        <input type="text" placeholder="@cat_model.cartridge_brand" value="@cat_model.cartridge_brand" name="cartridge_brand" class="form-control text-box single-line"/>
+        <input type="text" placeholder="@cat_model.cartridge_model" value="@cat_model.cartridge_model" name="cartridge_model" class="form-control text-box single-line"/>
+        <div>
+            <p>Подходит к :</p>
+            @foreach(p000045 dev_model in ViewBag.AllDevModels)
+            {
+                <input type="checkbox" name="fit_devices" value="@dev_model.kod" @(cat_model.p000045.Contains(dev_model) ? "checked=\"checked\"" : "")><span>@dev_model.device_brand @dev_model.device_model </span>
+            }
+        </div>
+        <input type="submit" value="Изменить" class="btn btn-default" />
+    }
+    using (Ajax.BeginForm("DeleteCatModel", new AjaxOptions { UpdateTargetId = cat_model.kod.ToString() }))
+    {
+        <input type="hidden" name="id" value="@cat_model.kod" />
+        <input type="submit" value="Удалить" class="btn btn-default"/>
+    }
+    <div id="@cat_model.kod"></div>
+    <hr />
+}
+

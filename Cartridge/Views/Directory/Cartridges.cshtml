@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Картриджи";
+}
+<h1>Список картриджей</h1>
+@foreach (p000052 cartridge in ViewBag.Cartridges)
+{
+    
+        using (Ajax.BeginForm("ChangeStatus", new AjaxOptions { UpdateTargetId = cartridge.kod.ToString() }))
+        {
+            <div>
+                <input type="hidden" name="cartridgeID" value="@cartridge.kod" />
+                <span>Номер картриджа - </span><b>@cartridge.kod</b>
+            </div>//Номер картриджа
+            <div>
+                <span>Модель картриджа - </span>
+                <b>@cartridge.p000049.cartridge_brand @cartridge.p000049.cartridge_model</b>
+            </div>//Модель картриджа
+            <div>
+                <span>Статус картриджа - </span>
+                <select name="statusID" class="form-control">
+                    <option></option>
+                    @foreach (p000051 status in ViewBag.Statuses)
+                    {
+                        <option value="@status.kod" @(status.kod == cartridge.kod_p000051 ? "selected" : "")>@status.status</option>
+                    }
+                </select>
+            </div>//Статус картриджа
+            <div id="@cartridge.kod"></div>
+            <input type="submit" value="Изменить" class="btn btn-default"/>
+    }
+    using (Ajax.BeginForm("DeleteCartridge", new AjaxOptions { Confirm="Удалить картридж?", UpdateTargetId = cartridge.kod.ToString() }))
+    {
+            <input type="hidden" name="id" value="@cartridge.kod" />
+            <input type="submit" value="Удалить" class="btn btn-default"/>
+            
+    }
+    <hr />
+}
+

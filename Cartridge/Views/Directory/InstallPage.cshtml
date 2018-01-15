@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Установка картриджа";
+}
+
+<h2>Установка картриджа</h2>
+<p>Выберите отдел: </p>
+@using (Ajax.BeginForm("InstallCartridge", new AjaxOptions { UpdateTargetId = "results" }))
+{
+    <div>
+        <select name="departmentID" class="form-control" id="department">
+            @foreach (p000044 department in ViewBag.Departments)
+            {
+                <option value="@department.kod">@department.department</option>
+            }
+        </select>
+    </div>
+    <div id="results">
+
+    </div>
+    <input type="submit" class="btn btn-default "/>
+}
+@*@section scripts {
+<script>
+    $('#department').change(function (e)
+    {
+        e.preventDefault();
+        var departmentID = $('#department').val();
+        var url = '@Url.Action("InstallCartridge", "Directory")';
+        $.post(url, { 'departmentID': departmentID}, function (data) {
+            $('#results').replaceWith(data);
+        });
+    })
+</script>    
+}*@

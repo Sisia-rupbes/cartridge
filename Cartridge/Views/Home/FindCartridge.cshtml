@@ -1,0 +1,25 @@
+﻿@if (ViewBag.Cartridge != null)
+{
+    foreach (p000052 cartridge in ViewBag.Cartridge)
+    {
+        if (cartridge.kod_p000051 != 3)
+        {
+            if (cartridge.kod_p000051 != null)
+            {
+                <p>Картридж №@cartridge.kod - @cartridge.p000051.status c @cartridge.p000053.FirstOrDefault(x => x.date == cartridge.p000053.Max(d => d.date)).date.ToShortDateString()</p>
+            }
+            else
+            {
+                <p>Картридж пока не имеет никакого состояния!</p>
+            }
+        }
+        else
+        {
+            <p>Картридж №@cartridge.kod - @cartridge.p000051.status в @cartridge.p000054.FirstOrDefault(x=>x.date==cartridge.p000054.Max(d=>d.date)).p000047.p000044.department на @cartridge.p000054.FirstOrDefault(x => x.date == cartridge.p000054.Max(d => d.date)).p000047.p000045.device_brand @cartridge.p000054.FirstOrDefault(x => x.date == cartridge.p000054.Max(d => d.date)).p000047.p000045.device_model c @cartridge.p000053.FirstOrDefault(x => x.date == cartridge.p000053.Max(d => d.date)).date.ToShortDateString()</p>
+        }
+    }
+}
+else
+{
+<p>Такого картриджа нету в базе</p>
+}

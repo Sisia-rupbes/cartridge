@@ -1,0 +1,7 @@
+﻿<p>Выберите устройство печати:</p>
+<select name="deviceID" class="form-control">
+    @foreach(p000047 device in ViewBag.Devices)
+    {
+        <option value="@device.kod">@device.p000045.device_brand @device.p000045.device_model - @device.number</option>
+    }
+</select>

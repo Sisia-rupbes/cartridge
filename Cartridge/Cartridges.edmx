@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище b1cakModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="p000044">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000045">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="device_brand" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="device_model" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000047">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_p000044" Type="int" Nullable="false" />
+          <Property Name="kod_p000045" Type="int" Nullable="false" />
+          <Property Name="number" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="p000049">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cartridge_brand" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="cartridge_model" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000050">
+          <Key>
+            <PropertyRef Name="kod_p000045" />
+            <PropertyRef Name="kod_p000049" />
+          </Key>
+          <Property Name="kod_p000045" Type="int" Nullable="false" />
+          <Property Name="kod_p000049" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000051">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000052">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_p000049" Type="int" Nullable="false" />
+          <Property Name="kod_p000051" Type="int" />
+        </EntityType>
+        <EntityType Name="p000053">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_p000052" Type="int" Nullable="false" />
+          <Property Name="kod_p000051" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="p000054">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_p000052" Type="int" Nullable="false" />
+          <Property Name="kod_p000047" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_p000047_kod_p000044">
+          <End Role="p000044" Type="Self.p000044" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000044">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000047">
+              <PropertyRef Name="kod_p000044" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000047_kod_p000045">
+          <End Role="p000045" Type="Self.p000045" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000045">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000047">
+              <PropertyRef Name="kod_p000045" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000050_kod_p000045">
+          <End Role="p000045" Type="Self.p000045" Multiplicity="1" />
+          <End Role="p000050" Type="Self.p000050" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000045">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000050">
+              <PropertyRef Name="kod_p000045" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000050_kod_p000049">
+          <End Role="p000049" Type="Self.p000049" Multiplicity="1" />
+          <End Role="p000050" Type="Self.p000050" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000049">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000050">
+              <PropertyRef Name="kod_p000049" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000052_kod_p000049">
+          <End Role="p000049" Type="Self.p000049" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000049">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000052">
+              <PropertyRef Name="kod_p000049" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000052_kod_p000051">
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000051">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000052">
+              <PropertyRef Name="kod_p000051" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000053_kod_p000051">
+          <End Role="p000051" Type="Self.p000051" Multiplicity="1" />
+          <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000051">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000053">
+              <PropertyRef Name="kod_p000051" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000053_kod_p000052">
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000052">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000053">
+              <PropertyRef Name="kod_p000052" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000054_kod_p000047">
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1" />
+          <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000047">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000054">
+              <PropertyRef Name="kod_p000047" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000054_kod_p000052">
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000052">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000054">
+              <PropertyRef Name="kod_p000052" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CartridgeChangeStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cartridgeID" Type="int" Mode="In" />
+          <Parameter Name="statusID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище b1cakModelContainer">
+          <EntitySet Name="p000044" EntityType="Self.p000044" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000045" EntityType="Self.p000045" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000047" EntityType="Self.p000047" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000049" EntityType="Self.p000049" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000050" EntityType="Self.p000050" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000051" EntityType="Self.p000051" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000052" EntityType="Self.p000052" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000053" EntityType="Self.p000053" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000054" EntityType="Self.p000054" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_p000047_kod_p000044" Association="Self.FK_p000047_kod_p000044">
+            <End Role="p000044" EntitySet="p000044" />
+            <End Role="p000047" EntitySet="p000047" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000047_kod_p000045" Association="Self.FK_p000047_kod_p000045">
+            <End Role="p000045" EntitySet="p000045" />
+            <End Role="p000047" EntitySet="p000047" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000050_kod_p000045" Association="Self.FK_p000050_kod_p000045">
+            <End Role="p000045" EntitySet="p000045" />
+            <End Role="p000050" EntitySet="p000050" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000050_kod_p000049" Association="Self.FK_p000050_kod_p000049">
+            <End Role="p000049" EntitySet="p000049" />
+            <End Role="p000050" EntitySet="p000050" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000052_kod_p000049" Association="Self.FK_p000052_kod_p000049">
+            <End Role="p000049" EntitySet="p000049" />
+            <End Role="p000052" EntitySet="p000052" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000052_kod_p000051" Association="Self.FK_p000052_kod_p000051">
+            <End Role="p000051" EntitySet="p000051" />
+            <End Role="p000052" EntitySet="p000052" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000053_kod_p000051" Association="Self.FK_p000053_kod_p000051">
+            <End Role="p000051" EntitySet="p000051" />
+            <End Role="p000053" EntitySet="p000053" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000053_kod_p000052" Association="Self.FK_p000053_kod_p000052">
+            <End Role="p000052" EntitySet="p000052" />
+            <End Role="p000053" EntitySet="p000053" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000054_kod_p000047" Association="Self.FK_p000054_kod_p000047">
+            <End Role="p000047" EntitySet="p000047" />
+            <End Role="p000054" EntitySet="p000054" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000054_kod_p000052" Association="Self.FK_p000054_kod_p000052">
+            <End Role="p000052" EntitySet="p000052" />
+            <End Role="p000054" EntitySet="p000054" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="b1cakModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="p000044">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="p000047" Relationship="Self.FK_p000047_kod_p000044" FromRole="p000044" ToRole="p000047" />
+        </EntityType>
+        <EntityType Name="p000045">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_brand" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="device_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="p000047" Relationship="Self.FK_p000047_kod_p000045" FromRole="p000045" ToRole="p000047" />
+          <NavigationProperty Name="p000049" Relationship="Self.p000050" FromRole="p000045" ToRole="p000049" />
+        </EntityType>
+        <EntityType Name="p000047">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod_p000044" Type="Int32" Nullable="false" />
+          <Property Name="kod_p000045" Type="Int32" Nullable="false" />
+          <Property Name="number" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="p000044" Relationship="Self.FK_p000047_kod_p000044" FromRole="p000047" ToRole="p000044" />
+          <NavigationProperty Name="p000045" Relationship="Self.FK_p000047_kod_p000045" FromRole="p000047" ToRole="p000045" />
+          <NavigationProperty Name="p000054" Relationship="Self.FK_p000054_kod_p000047" FromRole="p000047" ToRole="p000054" />
+        </EntityType>
+        <EntityType Name="p000049">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cartridge_brand" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cartridge_model" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="p000052" Relationship="Self.FK_p000052_kod_p000049" FromRole="p000049" ToRole="p000052" />
+          <NavigationProperty Name="p000045" Relationship="Self.p000050" FromRole="p000049" ToRole="p000045" />
+        </EntityType>
+        <EntityType Name="p000051">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="p000052" Relationship="Self.FK_p000052_kod_p000051" FromRole="p000051" ToRole="p000052" />
+          <NavigationProperty Name="p000053" Relationship="Self.FK_p000053_kod_p000051" FromRole="p000051" ToRole="p000053" />
+        </EntityType>
+        <EntityType Name="p000052">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod_p000049" Type="Int32" Nullable="false" />
+          <Property Name="kod_p000051" Type="Int32" />
+          <NavigationProperty Name="p000049" Relationship="Self.FK_p000052_kod_p000049" FromRole="p000052" ToRole="p000049" />
+          <NavigationProperty Name="p000051" Relationship="Self.FK_p000052_kod_p000051" FromRole="p000052" ToRole="p000051" />
+          <NavigationProperty Name="p000053" Relationship="Self.FK_p000053_kod_p000052" FromRole="p000052" ToRole="p000053" />
+          <NavigationProperty Name="p000054" Relationship="Self.FK_p000054_kod_p000052" FromRole="p000052" ToRole="p000054" />
+        </EntityType>
+        <EntityType Name="p000053">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod_p000052" Type="Int32" Nullable="false" />
+          <Property Name="kod_p000051" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="p000051" Relationship="Self.FK_p000053_kod_p000051" FromRole="p000053" ToRole="p000051" />
+          <NavigationProperty Name="p000052" Relationship="Self.FK_p000053_kod_p000052" FromRole="p000053" ToRole="p000052" />
+        </EntityType>
+        <EntityType Name="p000054">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod_p000052" Type="Int32" Nullable="false" />
+          <Property Name="kod_p000047" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="p000047" Relationship="Self.FK_p000054_kod_p000047" FromRole="p000054" ToRole="p000047" />
+          <NavigationProperty Name="p000052" Relationship="Self.FK_p000054_kod_p000052" FromRole="p000054" ToRole="p000052" />
+        </EntityType>
+        <Association Name="FK_p000047_kod_p000044">
+          <End Role="p000044" Type="Self.p000044" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000044">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000047">
+              <PropertyRef Name="kod_p000044" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000047_kod_p000045">
+          <End Role="p000045" Type="Self.p000045" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000045">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000047">
+              <PropertyRef Name="kod_p000045" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000054_kod_p000047">
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1" />
+          <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000047">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000054">
+              <PropertyRef Name="kod_p000047" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000052_kod_p000049">
+          <End Role="p000049" Type="Self.p000049" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000049">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000052">
+              <PropertyRef Name="kod_p000049" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000052_kod_p000051">
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000051">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000052">
+              <PropertyRef Name="kod_p000051" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000053_kod_p000051">
+          <End Role="p000051" Type="Self.p000051" Multiplicity="1" />
+          <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000051">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000053">
+              <PropertyRef Name="kod_p000051" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000053_kod_p000052">
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000052">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000053">
+              <PropertyRef Name="kod_p000052" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_p000054_kod_p000052">
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000052">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000054">
+              <PropertyRef Name="kod_p000052" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="p000050">
+          <End Role="p000045" Type="Self.p000045" Multiplicity="*" />
+          <End Role="p000049" Type="Self.p000049" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="b1cakEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="p000044" EntityType="Self.p000044" />
+          <EntitySet Name="p000045" EntityType="Self.p000045" />
+          <EntitySet Name="p000047" EntityType="Self.p000047" />
+          <EntitySet Name="p000049" EntityType="Self.p000049" />
+          <EntitySet Name="p000051" EntityType="Self.p000051" />
+          <EntitySet Name="p000052" EntityType="Self.p000052" />
+          <EntitySet Name="p000053" EntityType="Self.p000053" />
+          <EntitySet Name="p000054" EntityType="Self.p000054" />
+          <AssociationSet Name="FK_p000047_kod_p000044" Association="Self.FK_p000047_kod_p000044">
+            <End Role="p000044" EntitySet="p000044" />
+            <End Role="p000047" EntitySet="p000047" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000047_kod_p000045" Association="Self.FK_p000047_kod_p000045">
+            <End Role="p000045" EntitySet="p000045" />
+            <End Role="p000047" EntitySet="p000047" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000054_kod_p000047" Association="Self.FK_p000054_kod_p000047">
+            <End Role="p000047" EntitySet="p000047" />
+            <End Role="p000054" EntitySet="p000054" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000052_kod_p000049" Association="Self.FK_p000052_kod_p000049">
+            <End Role="p000049" EntitySet="p000049" />
+            <End Role="p000052" EntitySet="p000052" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000052_kod_p000051" Association="Self.FK_p000052_kod_p000051">
+            <End Role="p000051" EntitySet="p000051" />
+            <End Role="p000052" EntitySet="p000052" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000053_kod_p000051" Association="Self.FK_p000053_kod_p000051">
+            <End Role="p000051" EntitySet="p000051" />
+            <End Role="p000053" EntitySet="p000053" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000053_kod_p000052" Association="Self.FK_p000053_kod_p000052">
+            <End Role="p000052" EntitySet="p000052" />
+            <End Role="p000053" EntitySet="p000053" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000054_kod_p000052" Association="Self.FK_p000054_kod_p000052">
+            <End Role="p000052" EntitySet="p000052" />
+            <End Role="p000054" EntitySet="p000054" />
+          </AssociationSet>
+          <AssociationSet Name="p000050" Association="Self.p000050">
+            <End Role="p000045" EntitySet="p000045" />
+            <End Role="p000049" EntitySet="p000049" />
+          </AssociationSet>
+          <FunctionImport Name="CartridgeChangeStatus">
+            <Parameter Name="cartridgeID" Mode="In" Type="Int32" />
+            <Parameter Name="statusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище b1cakModelContainer" CdmEntityContainer="b1cakEntities">
+          <EntitySetMapping Name="p000044">
+            <EntityTypeMapping TypeName="b1cakModel.p000044">
+              <MappingFragment StoreEntitySet="p000044">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="department" ColumnName="department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000045">
+            <EntityTypeMapping TypeName="b1cakModel.p000045">
+              <MappingFragment StoreEntitySet="p000045">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="device_brand" ColumnName="device_brand" />
+                <ScalarProperty Name="device_model" ColumnName="device_model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000047">
+            <EntityTypeMapping TypeName="b1cakModel.p000047">
+              <MappingFragment StoreEntitySet="p000047">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="kod_p000044" ColumnName="kod_p000044" />
+                <ScalarProperty Name="kod_p000045" ColumnName="kod_p000045" />
+                <ScalarProperty Name="number" ColumnName="number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000049">
+            <EntityTypeMapping TypeName="b1cakModel.p000049">
+              <MappingFragment StoreEntitySet="p000049">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="cartridge_brand" ColumnName="cartridge_brand" />
+                <ScalarProperty Name="cartridge_model" ColumnName="cartridge_model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000051">
+            <EntityTypeMapping TypeName="b1cakModel.p000051">
+              <MappingFragment StoreEntitySet="p000051">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000052">
+            <EntityTypeMapping TypeName="b1cakModel.p000052">
+              <MappingFragment StoreEntitySet="p000052">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="kod_p000049" ColumnName="kod_p000049" />
+                <ScalarProperty Name="kod_p000051" ColumnName="kod_p000051" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000053">
+            <EntityTypeMapping TypeName="b1cakModel.p000053">
+              <MappingFragment StoreEntitySet="p000053">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="kod_p000052" ColumnName="kod_p000052" />
+                <ScalarProperty Name="kod_p000051" ColumnName="kod_p000051" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000054">
+            <EntityTypeMapping TypeName="b1cakModel.p000054">
+              <MappingFragment StoreEntitySet="p000054">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="kod_p000052" ColumnName="kod_p000052" />
+                <ScalarProperty Name="kod_p000047" ColumnName="kod_p000047" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="p000050" TypeName="b1cakModel.p000050" StoreEntitySet="p000050">
+            <EndProperty Name="p000045">
+              <ScalarProperty Name="kod" ColumnName="kod_p000045" />
+            </EndProperty>
+            <EndProperty Name="p000049">
+              <ScalarProperty Name="kod" ColumnName="kod_p000049" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="CartridgeChangeStatus" FunctionName="Хранилище b1cakModel.CartridgeChangeStatus" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

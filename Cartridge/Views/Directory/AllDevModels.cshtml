@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Модели устройств";
+}
+
+<h2>Все модели устройств печати</h2><br />
+@foreach (p000045 dev_model in ViewBag.AllDevModels)
+{
+    using (Ajax.BeginForm("EditDevModel", new AjaxOptions { UpdateTargetId = dev_model.kod.ToString() }))
+    {
+        <input type="hidden" name="kod" value="@dev_model.kod" />
+        <input type="text" placeholder="@dev_model.device_brand" value="@dev_model.device_brand" name="device_brand" class="form-control text-box single-line" />
+        <input type="text" placeholder="@dev_model.device_model" value="@dev_model.device_model" name="device_model" class="form-control text-box single-line" />
+        <div>
+            <p>Подходит к :</p>
+            @foreach (p000049 cat_model in ViewBag.AllCatModels)
+            {
+                <div class="input-row">
+                    <input type="checkbox" name="fit_cartridges" value="@cat_model.kod" @(dev_model.p000049.Contains(cat_model) ? "checked=\"checked\"" : "")><span>@cat_model.cartridge_brand @cat_model.cartridge_model</span>
+                </div>
+            }
+        </div>
+        <input type="submit" value="Изменить" class="btn btn-default" />
+    }
+    
+    using (Ajax.BeginForm("DeleteDevModel", new AjaxOptions { Confirm = "Удалить устройство?", UpdateTargetId = dev_model.kod.ToString() }))
+    {
+        <input type="hidden" name="id" value="@dev_model.kod" />
+            <input type="submit" value="Удалить" class="btn btn-default" />
+
+    }
+    <div id="@dev_model.kod"></div>
+    <hr />
+}

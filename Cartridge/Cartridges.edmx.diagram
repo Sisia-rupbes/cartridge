@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="614e748bd88840ef8152221f158c79c2" Name="Diagram1">
+        <EntityTypeShape EntityType="b1cakModel.p000044" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000045" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000047" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000049" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000051" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000052" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000053" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="b1cakModel.p000054" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="b1cakModel.FK_p000047_kod_p000044" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000047_kod_p000045" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000054_kod_p000047" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000052_kod_p000049" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000052_kod_p000051" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000053_kod_p000051" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000053_kod_p000052" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.FK_p000054_kod_p000052" ManuallyRouted="false" />
+        <AssociationConnector Association="b1cakModel.p000050" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

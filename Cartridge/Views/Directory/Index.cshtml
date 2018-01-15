@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Справочник моделей";
+}
+
+<h2>Справочник</h2>
+
+
+@using (Ajax.BeginForm("AddDepartment", new AjaxOptions { UpdateTargetId = "depresults" }))
+{
+    
+        <p>Новый отдел</p>
+        <input type="text" name="new_department" class="form-control text-box single-line" placeholder="Отдел"/>
+        <input type="submit" value="Добавить" class="btn btn-default" />
+    
+}
+
+@Html.ActionLink("Все отделы", "AllDepartments", "Directory")
+<div id="depresults"></div>
+<hr />
+
+@using (Ajax.BeginForm("AddCartridgeModel", new AjaxOptions { UpdateTargetId = "carresults" }))
+{
+    <p>Новая модель картриджа</p>
+    <input type="text" name="cartridge_brand" class="form-control text-box single-line" placeholder="Марка производителя"/>
+    <input type="text" name="cartridge_model" class="form-control text-box single-line" placeholder="Модель устройства"/>
+    <input type="submit" value="Добавить" class="btn btn-default" />
+}
+<div id="carresults"></div>
+@Html.ActionLink("Все модели картриджей", "AllCatModels", "Directory")
+<hr />
+@using (Ajax.BeginForm("AddDeviceModel", new AjaxOptions { UpdateTargetId = "devresults" }))
+{
+    <p>Новая модель устройства печати</p>
+    <input type="text" name="device_brand" class="form-control text-box single-line" placeholder="Марка производитель"/>
+    <input type="text" name="device_model" class="form-control text-box single-line" placeholder="Модель устройства"/>
+    <div>
+        <p>Подходит к: </p>
+        @foreach (p000049 item in ViewBag.Cartridges)
+        {
+            <div class="input-row">
+                <input type="checkbox" name="fit_cartridge" value="@item.kod" /><span>@item.cartridge_brand @item.cartridge_model</span>
+            </div>
+        
+        }
+    </div>
+    <input type="submit" value="Добавить" class="btn btn-default" />
+}
+<div id="devresults"></div>
+@Html.ActionLink("Все модели устройств печати", "AllDevModels", "Directory")
+<hr />

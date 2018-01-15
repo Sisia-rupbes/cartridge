@@ -1,0 +1,16 @@
+﻿<b>Картриджи в заправке:</b>
+@if (ViewBag.RefillingCartridges.Count > 0)
+{
+    foreach (p000052 cartridge in ViewBag.RefillingCartridges)
+    {
+       <div>
+           <span>Картридж № - @cartridge.kod  @cartridge.p000049.cartridge_brand @cartridge.p000049.cartridge_model </span>
+           <span>в заправке с - @cartridge.p000053.FirstOrDefault(x => x.date == cartridge.p000053.Max(d => d.date)).date.ToShortDateString()</span>
+       </div>
+
+    }
+}
+else
+{
+    <div><span>Список пуст</span></div>
+}

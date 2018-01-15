@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Устройства";
+}
+
+<h2>Все устройства печати</h2>
+@foreach (p000047 device in ViewBag.Devices)
+{
+    using (Ajax.BeginForm("EditDevice", new AjaxOptions { UpdateTargetId = device.kod.ToString() }))
+    {
+        <input type="hidden" name="kod" value="@device.kod" />
+        <p>Инвентарный номер - <input type="text" name="number" value="@device.number" placeholder="Инвентарный №" class="form-control text-box single-line"/></p>
+        <p>
+            Отдел - 
+            <select name="kod_p000044" class="form-control">
+                @foreach (p000044 department in ViewBag.Departments)
+                {
+                    <option value="@department.kod" @(department.kod == device.kod_p000044 ? "selected" : "")>@department.department</option>
+                }
+            </select>
+        </p>
+        <input type="hidden" name="kod_p000045" value="@device.kod_p000045" />
+        <p>Устройство - <b>@device.p000045.device_brand @device.p000045.device_model</b></p>
+        <input type="submit" class="btn btn-default" value="Изменить"/>
+        <div id="@device.kod.ToString()"></div>
+    }
+    using (Ajax.BeginForm("DeleteDevice", new AjaxOptions { Confirm = "Удалить устройство?", UpdateTargetId = device.kod.ToString() }))
+    {
+         <input type="hidden" name="deviceID" value="@device.kod" />
+        if (device.p000054.FirstOrDefault(x => x.date == device.p000054.Max(d => d.date)) != null)
+        {
+            <input type="hidden" name="cartridgeID" value="@device.p000054.FirstOrDefault(x=>x.date==device.p000054.Max(d=>d.date)).kod_p000052" />
+        }
+        else
+        {
+            <input type="hidden" name="cartridgeID" value="0" />
+        }
+         <input type="submit" value="Удалить" class="btn btn-default" />
+
+    }
+    <hr />
+}
+
