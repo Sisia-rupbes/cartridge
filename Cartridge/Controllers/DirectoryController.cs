@@ -15,6 +15,8 @@ namespace Cartridge.Controllers
         b1cakEntities db = new b1cakEntities();
         static int depID;
         static int devID;
+        static byte[] install_request;
+        static byte[] refill_request;
         
         public ActionResult Index()
         {
@@ -489,7 +491,9 @@ namespace Cartridge.Controllers
                         licID = last_installed_cartridge.kod_p000052;
                         db.CartridgeChangeStatus(last_installed_cartridge.kod_p000052, 6);//Ложим картридж, который был установлен на этом девайсе в коробку
                     }
-                    wr.GetRequest(departmentID, deviceID, licID, Server.MapPath("~/Content/install_request1.docx"), Server.MapPath("~/Content/install_request.docx"));
+                    //wr.GetRequest(departmentID, deviceID, licID, Server.MapPath("~/Content/install_request1.docx"), Server.MapPath("~/Content/install_request.docx"));
+                    OpenXML instReq = new OpenXML();
+                    install_request = instReq.CreatePackageAsBytes(departmentID, deviceID, licID);
                     db.CartridgeChangeStatus(cartridgeID, 3);//Устанавливаем картридж
                     install.kod_p000052 = cartridgeID;
                     install.kod_p000047 = deviceID;
@@ -502,9 +506,11 @@ namespace Cartridge.Controllers
 
         }
 
-        public FilePathResult InstallCartridgeReport()
+        public FileResult InstallCartridgeReport()
         {
-            return File(Server.MapPath("~/Content/install_request1.docx"), "application/word","install_request.docx");
+            //byte[] file = System.IO.File.ReadAllBytes(Server.MapPath("~/Content/install_request1.docx"));
+
+            return File(install_request, "application/word","install_request.docx");
         }
 
         public ActionResult RefillingPage()
@@ -545,7 +551,9 @@ namespace Cartridge.Controllers
                     listModelCounter.Add(modelCounter);
                     i++;
                 }
-                wr.GetRefill(listModelCounter, Server.MapPath("~/Content/refill_request1.docx"), Server.MapPath("~/Content/refill_request.docx"));//Формирование отчета в ворд
+                //wr.GetRefill(listModelCounter, Server.MapPath("~/Content/refill_request1.docx"), Server.MapPath("~/Content/refill_request.docx"));//Формирование отчета в ворд
+                OpenXMLRefill refReq = new OpenXMLRefill();
+                refill_request = refReq.CreatePackageAsBytes(listModelCounter);
                 foreach (int id in cartridgesID)
                 {
                     db.CartridgeChangeStatus(id, 7);
@@ -560,9 +568,11 @@ namespace Cartridge.Controllers
             
         }
 
-        public FilePathResult RefillCartridgeReport()
+        public FileResult RefillCartridgeReport()
         {
-            return File(Server.MapPath("~/Content/refill_request1.docx"), "application/word", "refill_request.docx");
+            //byte[] file = System.IO.File.ReadAllBytes(Server.MapPath("~/Content/refill_request1.docx"));
+
+            return File(refill_request, "application/word", "refill_request.docx");
         }
 
         public ActionResult ReturnPage()

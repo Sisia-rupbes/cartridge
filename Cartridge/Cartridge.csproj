@@ -201,6 +201,8 @@
     </Compile>
     <Compile Include="Models\FitDevice.cs" />
     <Compile Include="Models\ModelCounter.cs" />
+    <Compile Include="Models\OpenXML.cs" />
+    <Compile Include="Models\OpenXMLRefill.cs" />
     <Compile Include="Models\WordReport.cs" />
     <Compile Include="p000044.cs">
       <DependentUpon>Cartridges.tt</DependentUpon>
@@ -239,7 +241,7 @@
       <DependentUpon>Cartridges.edmx</DependentUpon>
       <LastGenOutput>Cartridges.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap1.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -250,10 +252,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\install_request.docx" />
-    <Content Include="Content\refill_request.docx" />
-    <Content Include="Content\install_request1.docx" />
-    <Content Include="Content\refill_request1.docx" />
     <EntityDeploy Include="Cartridges.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Cartridges.Designer.cs</LastGenOutput>
@@ -261,6 +259,7 @@
     <Content Include="Cartridges.edmx.diagram">
       <DependentUpon>Cartridges.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

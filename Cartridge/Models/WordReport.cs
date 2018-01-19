@@ -72,7 +72,7 @@ namespace Cartridge.Models
                 {
                     fieldValues.Add("count" + i, "");
                 }
-                countAll += modelCounter.Count;
+                
                 i++;
             }
             fieldValues.Add("countAll", countAll.ToString());
