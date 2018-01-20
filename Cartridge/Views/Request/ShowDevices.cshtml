@@ -1,0 +1,36 @@
+﻿@*<div id="results">
+    
+    @using (Ajax.BeginForm("AddRequest", new AjaxOptions { UpdateTargetId = "ans",LoadingElementId="loading" }))
+    {
+        <span>Выберите устройство печати:</span>
+        <select name="deviceID" class="form-control">
+            @foreach (p000047 device in ViewBag.Devices)
+            {
+                <option value="@device.kod">@device.p000045.device_brand @device.p000045.device_model - @device.number</option>
+            }
+        </select>
+        <input type="submit" class="btn btn-default" value="Отправить" />
+    }
+    
+    <div id="ans"><div id="loading" style="display:none">Идет обработка запроса...</div></div>
+</div>*@
+<div id="results">
+    <div class="block-c">
+    @using (Ajax.BeginForm("AddRequest", new AjaxOptions { UpdateTargetId = "ans", LoadingElementId = "loading" }))
+    {
+        <div class="text-c">Выберите устройство печати:</div>
+        <div class="select-c">
+            <select name="deviceID" class="form-control">
+                @foreach (p000047 device in ViewBag.Devices)
+                {
+                    <option value="@device.kod">@device.p000045.device_brand @device.p000045.device_model - @device.number</option>
+                }
+            </select>
+        </div>
+        <div class="btn-c">
+            <input type="submit" class="btn btn-default" value="Отправить" />
+        </div>
+    }
+    </div>
+    <div id="ans"><div id="loading" style="display:none">Идет обработка запроса...</div></div>
+</div>

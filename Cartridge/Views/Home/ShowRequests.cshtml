@@ -1,0 +1,17 @@
+﻿<b>Заявки на замену:</b>
+@if (ViewBag.Requests.Count > 0)
+{
+    foreach(p000046 request in ViewBag.Requests)
+    {
+        <div id="@request.kod">
+            <span>Заявка на устройство - @request.p000047.p000045.device_brand @request.p000047.p000045.device_model №@request.p000047.number</span>
+            <span>с отдела - @request.p000047.p000044.department</span>
+            <span>активна с @request.date.ToString()</span>
+            <span >@Ajax.ActionLink("Закрыть заявку", "CloseRequest", new { requestID = request.kod }, new AjaxOptions { UpdateTargetId = request.kod.ToString(), Confirm = "Закрыть запрос?" })</span>
+        </div>
+    }
+}
+else
+{
+    <div>Пока заявок нет</div>
+}

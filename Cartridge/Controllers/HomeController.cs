@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Cartridge.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         b1cakEntities db = new b1cakEntities();
@@ -57,6 +58,18 @@ namespace Cartridge.Controllers
                 ViewBag.Cartridge = null;
             }
             return PartialView(cartridge);
+        }
+        
+        public ActionResult ShowRequests()
+        {
+            ViewBag.Requests = db.p000046.Where(x => x.status == true).ToList();
+            return PartialView();
+        }
+
+        public string CloseRequest(int requestID)
+        {
+            db.CloseRequest(requestID);
+            return "Заявка закрыта";
         }
     }
 }

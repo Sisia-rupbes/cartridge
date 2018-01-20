@@ -194,8 +194,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cartridges.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DirectoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,7 +212,13 @@
     <Compile Include="p000045.cs">
       <DependentUpon>Cartridges.tt</DependentUpon>
     </Compile>
+    <Compile Include="p000046.cs">
+      <DependentUpon>Cartridges.tt</DependentUpon>
+    </Compile>
     <Compile Include="p000047.cs">
+      <DependentUpon>Cartridges.tt</DependentUpon>
+    </Compile>
+    <Compile Include="p000048.cs">
       <DependentUpon>Cartridges.tt</DependentUpon>
     </Compile>
     <Compile Include="p000049.cs">
@@ -243,6 +251,7 @@
     </Content>
     <Content Include="Content\bootstrap1.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\style-c.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -307,6 +316,10 @@
     <Content Include="Views\Home\FindCartridge.cshtml" />
     <Content Include="Views\Directory\Devices.cshtml" />
     <Content Include="Views\Directory\Physical.cshtml" />
+    <Content Include="Views\Request\Index.cshtml" />
+    <Content Include="Views\Request\ShowDevices.cshtml" />
+    <Content Include="Views\Home\ShowRequests.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

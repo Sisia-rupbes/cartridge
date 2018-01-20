@@ -29,12 +29,23 @@ namespace Cartridge
     
         public virtual DbSet<p000044> p000044 { get; set; }
         public virtual DbSet<p000045> p000045 { get; set; }
+        public virtual DbSet<p000046> p000046 { get; set; }
         public virtual DbSet<p000047> p000047 { get; set; }
+        public virtual DbSet<p000048> p000048 { get; set; }
         public virtual DbSet<p000049> p000049 { get; set; }
         public virtual DbSet<p000051> p000051 { get; set; }
         public virtual DbSet<p000052> p000052 { get; set; }
         public virtual DbSet<p000053> p000053 { get; set; }
         public virtual DbSet<p000054> p000054 { get; set; }
+    
+        public virtual int AddRequest(Nullable<int> deviceID)
+        {
+            var deviceIDParameter = deviceID.HasValue ?
+                new ObjectParameter("deviceID", deviceID) :
+                new ObjectParameter("deviceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddRequest", deviceIDParameter);
+        }
     
         public virtual int CartridgeChangeStatus(Nullable<int> cartridgeID, Nullable<int> statusID)
         {
@@ -47,6 +58,15 @@ namespace Cartridge
                 new ObjectParameter("statusID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CartridgeChangeStatus", cartridgeIDParameter, statusIDParameter);
+        }
+    
+        public virtual int CloseRequest(Nullable<int> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CloseRequest", iDParameter);
         }
     }
 }

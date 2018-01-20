@@ -17,6 +17,7 @@ namespace Cartridge
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public p000047()
         {
+            this.p000046 = new HashSet<p000046>();
             this.p000054 = new HashSet<p000054>();
         }
     
@@ -27,6 +28,8 @@ namespace Cartridge
     
         public virtual p000044 p000044 { get; set; }
         public virtual p000045 p000045 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<p000046> p000046 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<p000054> p000054 { get; set; }
     }

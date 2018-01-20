@@ -8,6 +8,7 @@ using Cartridge.Models;
 
 namespace Cartridge.Controllers
 {
+    [Authorize]
     public class DirectoryController : Controller
     {
         // GET: Directory

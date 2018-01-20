@@ -1,0 +1,66 @@
+﻿.window-c {
+	margin: auto;
+	margin-top: 150px;
+	min-height: 250px;
+	width: 500px;
+	border: 2px solid #969696;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px 0px 25px #8b8b8b inset,
+				10px 10px 30px;
+	box-shadow: 0px 0px 15px #8b8b8b inset,
+				0px 0px 150px #919090;
+	background-color:rgba(235, 235, 235, 0.69);
+}
+.title-c {
+	text-align: center;
+	padding: 10px;
+	margin: auto;
+	font-size: 22px;
+	font-family: sans-serif;
+}
+.block-c {
+	position: relative;
+	display: block;
+	height: auto;
+}
+.text-c {
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: 20px;
+	font-size: 16px;
+	font-family: sans-serif;
+}
+.select-c {
+	display: inline-block;
+}
+.select-c select {
+	width: 180px;
+}
+.btn-c input {
+	display: block;
+	margin:10px auto;
+}
+#ans {
+	font-size: 18px;
+	text-align: center;
+}
+#loading {
+	-webkit-animation: loading 1.4s infinite ease;
+	animation: loading 1.4s infinite ease;
+}
+.site-c {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	
+}
+@-webkit-keyframes loading {
+	from {color: #000;}
+	50% {color: rgba(2, 2, 2, 0.35);}
+	to {color: #000;}
+}
+@keyframes loading {
+	from {color: #000;}
+	50% {color: rgba(2, 2, 2, 0.35);}
+	to {color: #000;}
+}

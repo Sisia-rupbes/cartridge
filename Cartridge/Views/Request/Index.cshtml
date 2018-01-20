@@ -1,0 +1,80 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/style-c.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>View</title>
+</head>
+<body>
+    <div class="site-c">@Html.ActionLink("Сайт", "Index", "Home")</div>
+    <div class="window-c">
+        <div class="title-c">Заявка на замену картриджа</div>
+        <div class="block-c">
+            <div class="text-c">Выберите отдел:</div>
+            <div class="select-c">
+                <select name="departmentID" class="form-control" id="department">
+                    <option selected></option>
+                    @foreach (p000044 department in ViewBag.Departments)
+                    {
+                        <option value="@department.kod">@department.department</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div id="results">
+            <div class="block-c">
+                <div class="text-c"></div>
+                <div class="select-c"></div>
+            </div>
+            <div class="btn-c"></div>
+            <div id="ans"><div id="loading"></div></div>
+        </div>
+
+    </div>
+
+    @*<div>
+        <h2>Заявка на замену картриджа</h2>
+        <span>Выберите отдел: </span>
+        <select name="departmentID" class="form-control" id="department">
+            @foreach (p000044 department in ViewBag.Departments)
+            {
+                <option value="@department.kod">@department.department</option>
+            }
+        </select>
+    </div>
+    <div id="results">
+
+    </div>*@
+
+    
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/scripts/jquery-1.10.2.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/bundles/bootstrap")
+    <script>
+
+
+        $('#department').change(function (e)
+        {
+            e.preventDefault();
+            var departmentID = $('#department').val();
+            var url = '@Url.Action("ShowDevices", "Request")';
+            $.post(url, { 'departmentID': departmentID }, function (data) {
+                $('#results').replaceWith(data);
+            });
+        })
+    </script>
+
+
+</body>
+</html>

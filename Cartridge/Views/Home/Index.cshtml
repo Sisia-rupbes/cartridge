@@ -3,39 +3,47 @@
 }
 
 <h2>Отчет по состоянию картриджей</h2>
-@using (Ajax.BeginForm("ShowInstall", new AjaxOptions { UpdateTargetId = "cartridge-result" }))
+@using (Ajax.BeginForm("ShowRequests", new AjaxOptions { UpdateTargetId = "cartridge-result",LoadingElementId = "loading" }))
+{
+    <div class="form-group">
+
+        <input type="submit" value="Заявки" class="btn btn-default" onclick="ShowElem()" />
+    </div>
+}
+@using (Ajax.BeginForm("ShowInstall", new AjaxOptions { UpdateTargetId = "cartridge-result", LoadingElementId = "loading" }))
 {
     <div class="form-group">
         <input type="submit" value="Установленные" class="btn btn-default" onclick="ShowElem()"/>
     </div>
 }
-@using (Ajax.BeginForm("ShowRefill", new AjaxOptions { UpdateTargetId = "cartridge-result" }))
+@using (Ajax.BeginForm("ShowRefill", new AjaxOptions { UpdateTargetId = "cartridge-result", LoadingElementId = "loading" }))
 {
     <div class="form-group">
         <input type="submit" value="В заправке" class="btn btn-default" onclick="ShowElem()"/>
     </div>
 }
-@using (Ajax.BeginForm("ShowBox", new AjaxOptions { UpdateTargetId = "cartridge-result" }))
+@using (Ajax.BeginForm("ShowBox", new AjaxOptions { UpdateTargetId = "cartridge-result", LoadingElementId = "loading" }))
 {
     <div class="form-group">
         <input type="submit" value="В коробке" class="btn btn-default" onclick="ShowElem()"/>
     </div>
 }
-@using (Ajax.BeginForm("ShowCupboard", new AjaxOptions { UpdateTargetId = "cartridge-result" }))
+@using (Ajax.BeginForm("ShowCupboard", new AjaxOptions { UpdateTargetId = "cartridge-result", LoadingElementId = "loading" }))
 {
     <div class="form-group">
         <input type="submit" value="В шкафу" class="btn btn-default" onclick="ShowElem()"/>
     </div>
 }
 <p>Поиск картриджа по номеру</p>
-@using (Ajax.BeginForm("FindCartridge", new AjaxOptions { UpdateTargetId = "cartridge-result" }))
+@using (Ajax.BeginForm("FindCartridge", new AjaxOptions { UpdateTargetId = "cartridge-result", LoadingElementId = "loading" }))
 {
     <div class="form-group">
         <input type="text" name="cartridgeID" class="form-control text-box single-line"/>
         <input type="submit" value="Найти" class="btn btn-default" onclick="ShowElem()"/>
     </div>
 }
-<div id="cartridge-result" class="server-result" style="opacity:0;"></div>
+
+<div id="cartridge-result" class="server-result" style="opacity:0;"><div id="loading" style="display:none;">Идет загрузка...</div></div>
 <script>
     'use strict'
     var elem = document.getElementById("cartridge-result");

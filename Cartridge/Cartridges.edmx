@@ -20,6 +20,15 @@
           <Property Name="device_brand" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="device_model" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="p000046">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kod_p000047" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="p000047">
           <Key>
             <PropertyRef Name="kod" />
@@ -28,6 +37,13 @@
           <Property Name="kod_p000044" Type="int" Nullable="false" />
           <Property Name="kod_p000045" Type="int" Nullable="false" />
           <Property Name="number" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="p000048">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="p000049">
           <Key>
@@ -66,7 +82,7 @@
           </Key>
           <Property Name="kod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="kod_p000052" Type="int" Nullable="false" />
-          <Property Name="kod_p000051" Type="int" Nullable="false" />
+          <Property Name="kod_p000051" Type="int" />
           <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="p000054">
@@ -78,6 +94,20 @@
           <Property Name="kod_p000047" Type="int" Nullable="false" />
           <Property Name="date" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_p000046_kod_p000047">
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="p000046" Type="Self.p000046" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000047">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000046">
+              <PropertyRef Name="kod_p000047" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_p000047_kod_p000044">
           <End Role="p000044" Type="Self.p000044" Multiplicity="1" />
           <End Role="p000047" Type="Self.p000047" Multiplicity="*" />
@@ -103,7 +133,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000050_kod_p000045">
-          <End Role="p000045" Type="Self.p000045" Multiplicity="1" />
+          <End Role="p000045" Type="Self.p000045" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000050" Type="Self.p000050" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000045">
@@ -115,7 +147,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000050_kod_p000049">
-          <End Role="p000049" Type="Self.p000049" Multiplicity="1" />
+          <End Role="p000049" Type="Self.p000049" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000050" Type="Self.p000050" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000049">
@@ -139,7 +173,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000052_kod_p000051">
-          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000051">
@@ -151,7 +187,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000053_kod_p000051">
-          <End Role="p000051" Type="Self.p000051" Multiplicity="1" />
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
           <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000051">
@@ -163,7 +199,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000053_kod_p000052">
-          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000052">
@@ -175,7 +213,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000054_kod_p000047">
-          <End Role="p000047" Type="Self.p000047" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000047">
@@ -187,7 +227,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000054_kod_p000052">
-          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000052">
@@ -198,20 +240,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="AddRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="deviceID" Type="int" Mode="In" />
+        </Function>
         <Function Name="CartridgeChangeStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cartridgeID" Type="int" Mode="In" />
           <Parameter Name="statusID" Type="int" Mode="In" />
         </Function>
+        <Function Name="CloseRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="Хранилище b1cakModelContainer">
           <EntitySet Name="p000044" EntityType="Self.p000044" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000045" EntityType="Self.p000045" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000046" EntityType="Self.p000046" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000047" EntityType="Self.p000047" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="p000048" EntityType="Self.p000048" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000049" EntityType="Self.p000049" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000050" EntityType="Self.p000050" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000051" EntityType="Self.p000051" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000052" EntityType="Self.p000052" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000053" EntityType="Self.p000053" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="p000054" EntityType="Self.p000054" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_p000046_kod_p000047" Association="Self.FK_p000046_kod_p000047">
+            <End Role="p000047" EntitySet="p000047" />
+            <End Role="p000046" EntitySet="p000046" />
+          </AssociationSet>
           <AssociationSet Name="FK_p000047_kod_p000044" Association="Self.FK_p000047_kod_p000044">
             <End Role="p000044" EntitySet="p000044" />
             <End Role="p000047" EntitySet="p000047" />
@@ -276,6 +330,16 @@
           <NavigationProperty Name="p000047" Relationship="Self.FK_p000047_kod_p000045" FromRole="p000045" ToRole="p000047" />
           <NavigationProperty Name="p000049" Relationship="Self.p000050" FromRole="p000045" ToRole="p000049" />
         </EntityType>
+        <EntityType Name="p000046">
+          <Key>
+            <PropertyRef Name="kod" />
+          </Key>
+          <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kod_p000047" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="p000047" Relationship="Self.FK_p000046_kod_p000047" FromRole="p000046" ToRole="p000047" />
+        </EntityType>
         <EntityType Name="p000047">
           <Key>
             <PropertyRef Name="kod" />
@@ -286,7 +350,15 @@
           <Property Name="number" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="p000044" Relationship="Self.FK_p000047_kod_p000044" FromRole="p000047" ToRole="p000044" />
           <NavigationProperty Name="p000045" Relationship="Self.FK_p000047_kod_p000045" FromRole="p000047" ToRole="p000045" />
+          <NavigationProperty Name="p000046" Relationship="Self.FK_p000046_kod_p000047" FromRole="p000047" ToRole="p000046" />
           <NavigationProperty Name="p000054" Relationship="Self.FK_p000054_kod_p000047" FromRole="p000047" ToRole="p000054" />
+        </EntityType>
+        <EntityType Name="p000048">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="p000049">
           <Key>
@@ -325,7 +397,7 @@
           </Key>
           <Property Name="kod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="kod_p000052" Type="Int32" Nullable="false" />
-          <Property Name="kod_p000051" Type="Int32" Nullable="false" />
+          <Property Name="kod_p000051" Type="Int32" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="p000051" Relationship="Self.FK_p000053_kod_p000051" FromRole="p000053" ToRole="p000051" />
           <NavigationProperty Name="p000052" Relationship="Self.FK_p000053_kod_p000052" FromRole="p000053" ToRole="p000052" />
@@ -365,8 +437,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_p000046_kod_p000047">
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="p000046" Type="Self.p000046" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="p000047">
+              <PropertyRef Name="kod" />
+            </Principal>
+            <Dependent Role="p000046">
+              <PropertyRef Name="kod_p000047" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_p000054_kod_p000047">
-          <End Role="p000047" Type="Self.p000047" Multiplicity="1" />
+          <End Role="p000047" Type="Self.p000047" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000047">
@@ -390,7 +478,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000052_kod_p000051">
-          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000052" Type="Self.p000052" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000051">
@@ -402,7 +492,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000053_kod_p000051">
-          <End Role="p000051" Type="Self.p000051" Multiplicity="1" />
+          <End Role="p000051" Type="Self.p000051" Multiplicity="0..1" />
           <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000051">
@@ -414,7 +504,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000053_kod_p000052">
-          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000053" Type="Self.p000053" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000052">
@@ -426,7 +518,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_p000054_kod_p000052">
-          <End Role="p000052" Type="Self.p000052" Multiplicity="1" />
+          <End Role="p000052" Type="Self.p000052" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="p000054" Type="Self.p000054" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="p000052">
@@ -444,7 +538,9 @@
         <EntityContainer Name="b1cakEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="p000044" EntityType="Self.p000044" />
           <EntitySet Name="p000045" EntityType="Self.p000045" />
+          <EntitySet Name="p000046" EntityType="Self.p000046" />
           <EntitySet Name="p000047" EntityType="Self.p000047" />
+          <EntitySet Name="p000048" EntityType="Self.p000048" />
           <EntitySet Name="p000049" EntityType="Self.p000049" />
           <EntitySet Name="p000051" EntityType="Self.p000051" />
           <EntitySet Name="p000052" EntityType="Self.p000052" />
@@ -457,6 +553,10 @@
           <AssociationSet Name="FK_p000047_kod_p000045" Association="Self.FK_p000047_kod_p000045">
             <End Role="p000045" EntitySet="p000045" />
             <End Role="p000047" EntitySet="p000047" />
+          </AssociationSet>
+          <AssociationSet Name="FK_p000046_kod_p000047" Association="Self.FK_p000046_kod_p000047">
+            <End Role="p000047" EntitySet="p000047" />
+            <End Role="p000046" EntitySet="p000046" />
           </AssociationSet>
           <AssociationSet Name="FK_p000054_kod_p000047" Association="Self.FK_p000054_kod_p000047">
             <End Role="p000047" EntitySet="p000047" />
@@ -486,9 +586,15 @@
             <End Role="p000045" EntitySet="p000045" />
             <End Role="p000049" EntitySet="p000049" />
           </AssociationSet>
+          <FunctionImport Name="AddRequest">
+            <Parameter Name="deviceID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="CartridgeChangeStatus">
             <Parameter Name="cartridgeID" Mode="In" Type="Int32" />
             <Parameter Name="statusID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CloseRequest">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -514,6 +620,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="p000046">
+            <EntityTypeMapping TypeName="b1cakModel.p000046">
+              <MappingFragment StoreEntitySet="p000046">
+                <ScalarProperty Name="kod" ColumnName="kod" />
+                <ScalarProperty Name="kod_p000047" ColumnName="kod_p000047" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="p000047">
             <EntityTypeMapping TypeName="b1cakModel.p000047">
               <MappingFragment StoreEntitySet="p000047">
@@ -521,6 +637,14 @@
                 <ScalarProperty Name="kod_p000044" ColumnName="kod_p000044" />
                 <ScalarProperty Name="kod_p000045" ColumnName="kod_p000045" />
                 <ScalarProperty Name="number" ColumnName="number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="p000048">
+            <EntityTypeMapping TypeName="b1cakModel.p000048">
+              <MappingFragment StoreEntitySet="p000048">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -578,7 +702,9 @@
               <ScalarProperty Name="kod" ColumnName="kod_p000049" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="AddRequest" FunctionName="Хранилище b1cakModel.AddRequest" />
           <FunctionImportMapping FunctionImportName="CartridgeChangeStatus" FunctionName="Хранилище b1cakModel.CartridgeChangeStatus" />
+          <FunctionImportMapping FunctionImportName="CloseRequest" FunctionName="Хранилище b1cakModel.CloseRequest" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

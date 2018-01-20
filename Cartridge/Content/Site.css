@@ -27,7 +27,9 @@ textarea {
     padding:10px;
     border:1px solid #808080;
     border-radius: 4px;
+    -webkit-box-shadow: #a3a3a3 0px 0px 5px inset;
     box-shadow: #a3a3a3 0px 0px 5px inset;
+    -webkit-transition:.2s ease;
     transition:.2s ease;
 }
 #results {
@@ -35,6 +37,7 @@ textarea {
 }
 .input-row {
     border-radius:3px;
+    -webkit-box-shadow:0px 0px 3px #a3a3a3;
     box-shadow:0px 0px 3px #a3a3a3;
     padding:3px;
     display:inline-block;
@@ -46,4 +49,18 @@ textarea {
 }
 a{
     font-size:16px;
+}
+#loading {
+	-webkit-animation: loading 1.4s infinite ease;
+	animation: loading 1.4s infinite ease;
+}
+@-webkit-keyframes loading {
+	from {color: #000;}
+	50% {color: rgba(2, 2, 2, 0.35);}
+	to {color: #000;}
+}
+@keyframes loading {
+	from {color: #000;}
+	50% {color: rgba(2, 2, 2, 0.35);}
+	to {color: #000;}
 }
